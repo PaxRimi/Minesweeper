@@ -27,6 +27,10 @@ body {
     cursor: pointer;
 }
 
+#board div.bomb {
+    background-color: red;
+}
+
 #board div.hide {
     background-color: grey;
     z-index: 10;
