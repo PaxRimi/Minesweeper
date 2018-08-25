@@ -3,13 +3,15 @@ window.addEventListener("DOMContentLoaded", function () {
        constructor(boardWidth, boardHeight){
            this.width = boardWidth;
            this.height = boardHeight;
+           this.numberOfElements = this.width * this.height;
+           this.quantityOfMines = boardWidth;
            this.board = document.getElementById('board');
            this.cells = [];
+           this.placeOfMines = [];
            this.createBoard =() => {
                this.board.style.width = `${this.width * 25}px`;
                this.board.style.height = `${this.height * 25}px`;
-               const numberOfElements = this.width * this.height;
-               for (let i=0; i<numberOfElements; i++) {
+               for (let i=0; i<this.numberOfElements; i++) {
                    const div = document.createElement('div');
                    div.classList.add("hide");
                    this.board.appendChild(div);
@@ -21,12 +23,29 @@ window.addEventListener("DOMContentLoaded", function () {
                    })
                });
            };
+           this.addBombs = () => {
+               for (let i=0; i<this.quantityOfMines; i++) {
+                   let number;
+
+                   do {
+                       number = ~~(Math.random() * this.numberOfElements);
+                       console.log(number);
+                   } while (this.placeOfMines.indexOf(number) !== -1);
+
+                    this.cells[number].classList.add('bomb');
+                    this.placeOfMines.push(number);
+                    console.log(this.placeOfMines);
+               }
+           }
+
+
+
        }
     }
 
     const playGame = new Minesweeper(10,10);
     playGame.createBoard();
-
+    playGame.addBombs();
 
 
 
