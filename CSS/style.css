@@ -49,3 +49,35 @@ body {
     left: 2px;
     top: 7px;
 }
+
+.info{
+    width: 250px;
+    background-color: darkgrey;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+}
+
+.info .screen {
+    width: 80px;
+    height: 30px;
+    font-size: 18px;
+    color: red;
+    background-color: black;
+    text-align: right;
+    line-height: 30px;
+    padding-right: 3px;
+}
+
+.restart {
+    height: 30px;
+    border: 2px solid black;
+}
+
+.restart img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: yellow;
+}
