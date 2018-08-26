@@ -25,6 +25,9 @@ body {
     background-color: #ffffff;
     float: left;
     cursor: pointer;
+    text-align: center;
+    line-height: 25px;
+    color: grey;
 }
 
 #board div.bomb {
@@ -33,5 +36,4 @@ body {
 
 #board div.hide {
     background-color: grey;
-    z-index: 10;
 }
