@@ -1,5 +1,9 @@
 window.addEventListener("DOMContentLoaded", function () {
 
+    const resetGame = document.getElementById('restartGame');
+    var boardParent = document.querySelector('.boardFlex');
+    console.log(resetGame);
+
    class Minesweeper {
        constructor(boardWidth, boardHeight) {
            this.width = boardWidth;
@@ -10,7 +14,6 @@ window.addEventListener("DOMContentLoaded", function () {
            this.board = document.getElementById('board');
            this.counterOfBombs = document.getElementById("bombCounter");
            self.emoticonFace = document.querySelector('#restartGame img');
-           console.log(this.emoticonFace);
            this.cells = [];
            this.placeOfMines = [];
            this.createBoard = () => {
@@ -147,6 +150,7 @@ window.addEventListener("DOMContentLoaded", function () {
                } else if (el.currentTarget.classList.contains("bomb")) {
                    this.gameOver();
                }
+               this.winGame();
            };
 
            this.checkNeighbor = (x, y) => {
@@ -294,25 +298,49 @@ window.addEventListener("DOMContentLoaded", function () {
                    this.cells[i].classList.remove("hide");
                }
                self.emoticonFace.setAttribute("src","img/icons8-disappointed-emoticon-50.png")
+           };
+
+           this.winGame = () => {
+                let hideLeft = 0;
+
+                for(let i = 0; i < this.numberOfElements; i++) {
+                    if(this.cells[i].classList.contains("hide")){
+                        hideLeft++;
+                    }
+                }
+
+                console.log(hideLeft);
+                if (hideLeft === this.quantityOfMines){
+                    self.emoticonFace.setAttribute("src","img/icons8-cartoon-face-50.png");
+                }
            }
-
-
        }
    }
 
+   // let playGame;
 
+    function clearBoard() {
+        boardParent.removeChild(boardParent.lastElementChild);
+        let board = document.createElement("section");
+        board.setAttribute('id','board');
+        boardParent.appendChild(board);
+    }
 
-
-
-
-
-
-    const playGame = new Minesweeper(10,10);
+    playGame = new Minesweeper(10,10);
     playGame.createBoard();
     playGame.addBombs();
     playGame.showNumbers();
     playGame.setbombCounter();
 
-
+    resetGame.addEventListener('click', () => {
+        delete window.playGame;
+        clearBoard();
+        playGame = new Minesweeper(10,10);
+        playGame.createBoard();
+        playGame.addBombs();
+        playGame.showNumbers();
+        playGame.setbombCounter();
+        playGame.emoticonFace.setAttribute("src","img/icons8-happy-50.png");
+    })
 
 });
