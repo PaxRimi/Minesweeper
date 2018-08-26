@@ -22,7 +22,12 @@ window.addEventListener("DOMContentLoaded", function () {
                    element.addEventListener('click', function (e) {
                        this.classList.remove('hide');
                    });
-                   element.addEventListener('click', (e) => self.checkNumber(e))
+                   element.addEventListener('click', (e) => self.checkNumber(e));
+                   element.addEventListener('contextmenu', function(e) {
+                       e.preventDefault();
+                       self.addFlag(e);
+                       return false;
+                   }, false);
                });
            };
            this.index = (x, y) => {
@@ -252,6 +257,20 @@ window.addEventListener("DOMContentLoaded", function () {
                        }
                    }
                }
+           };
+           self.addFlag = (e) => {
+                let element = e.currentTarget;
+
+                if(element.classList.contains("hide")) {
+                    if (element.children.length > 0) {
+                        let child = element.querySelector("span");
+                        child.remove();
+                    } else {
+                        let flag = document.createElement("span");
+                        flag.classList.add("flag");
+                        element.appendChild(flag);
+                    }
+                }
            };
 
            this.gameOver = () => {
