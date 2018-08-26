@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", function () {
            this.board = document.getElementById('board');
            this.counterOfBombs = document.getElementById("bombCounter");
            self.emoticonFace = document.querySelector('#restartGame img');
+           this.gameTimer = document.getElementById("timeCounter");
            this.cells = [];
            this.placeOfMines = [];
            this.createBoard = () => {
@@ -126,6 +127,22 @@ window.addEventListener("DOMContentLoaded", function () {
                        }
                    }
                }
+           };
+
+           this.startCountingTime = () => {
+             self.setinterval = setInterval(() => {
+                 this.gameTimer.innerText--;
+
+                 if (this.gameTimer.innerText === "0"){
+                     this.stopCountingTime();
+                     this.gameOver();
+                 }
+             }, 1000);
+
+           };
+
+           this.stopCountingTime = () => {
+             clearInterval(self.setinterval);
            };
 
            self.checkNumber = (el) => {
@@ -298,6 +315,7 @@ window.addEventListener("DOMContentLoaded", function () {
                    this.cells[i].classList.remove("hide");
                }
                self.emoticonFace.setAttribute("src","img/icons8-disappointed-emoticon-50.png")
+               clearInterval(self.setinterval);
            };
 
            this.winGame = () => {
@@ -311,7 +329,18 @@ window.addEventListener("DOMContentLoaded", function () {
 
                 console.log(hideLeft);
                 if (hideLeft === this.quantityOfMines){
+                    for(let i = 0; i < this.numberOfElements; i++) {
+                        if(this.cells[i].classList.contains("hide")){
+                            let flag = document.createElement("span");
+                            flag.classList.add("flag");
+                            this.cells[i].appendChild(flag);
+                        }
+                    }
+
                     self.emoticonFace.setAttribute("src","img/icons8-cartoon-face-50.png");
+                    this.counterOfBombs.innerText = "0";
+                    clearInterval(self.setinterval);
+
                 }
            }
        }
@@ -331,6 +360,7 @@ window.addEventListener("DOMContentLoaded", function () {
     playGame.addBombs();
     playGame.showNumbers();
     playGame.setbombCounter();
+    playGame.startCountingTime();
 
     resetGame.addEventListener('click', () => {
         delete window.playGame;
@@ -340,6 +370,8 @@ window.addEventListener("DOMContentLoaded", function () {
         playGame.addBombs();
         playGame.showNumbers();
         playGame.setbombCounter();
+        playGame.gameTimer.innerText = "70";
+        playGame.startCountingTime();
         playGame.emoticonFace.setAttribute("src","img/icons8-happy-50.png");
     })
 
