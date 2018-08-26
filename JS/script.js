@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", function () {
            this.width = boardWidth;
            this.height = boardHeight;
            this.numberOfElements = this.width * this.height;
-           this.quantityOfMines = boardWidth;
+           this.quantityOfMines = boardWidth + 5;
            this.board = document.getElementById('board');
            this.cells = [];
            this.placeOfMines = [];
@@ -114,6 +114,7 @@ window.addEventListener("DOMContentLoaded", function () {
                let array = Array.from(this.cells);
                let x;
                let y;
+               console.log(el.currentTarget);
 
                if (el.currentTarget.innerText === "0") {
                    let number = array.indexOf(el.currentTarget).toString();
@@ -126,8 +127,10 @@ window.addEventListener("DOMContentLoaded", function () {
                        x = number.charAt(1);
                    }
 
-                   console.log(x, y)
+                   console.log(x, y);
                    this.checkNeighbor(Number(x), Number(y))
+               } else if (el.currentTarget.classList.contains("bomb")) {
+                   this.gameOver();
                }
            };
 
@@ -250,6 +253,12 @@ window.addEventListener("DOMContentLoaded", function () {
                    }
                }
            };
+
+           this.gameOver = () => {
+               for (let i = 0; i < this.numberOfElements; i++) {
+                   this.cells[i].classList.remove("hide");
+               }
+           }
        }
    }
 
