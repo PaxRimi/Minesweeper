@@ -73,6 +73,7 @@ body {
 .restart {
     height: 30px;
     border: 2px solid black;
+    cursor: pointer;
 }
 
 .restart img{
