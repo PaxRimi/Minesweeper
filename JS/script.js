@@ -1,14 +1,18 @@
 window.addEventListener("DOMContentLoaded", function () {
+
    class Minesweeper {
        constructor(boardWidth, boardHeight) {
            this.width = boardWidth;
            this.height = boardHeight;
+           const self = this;
            this.numberOfElements = this.width * this.height;
            this.quantityOfMines = boardWidth + 5;
            this.board = document.getElementById('board');
+           this.counterOfBombs = document.getElementById("bombCounter");
+           self.emoticonFace = document.querySelector('#restartGame img');
+           console.log(this.emoticonFace);
            this.cells = [];
            this.placeOfMines = [];
-           const self = this;
            this.createBoard = () => {
                this.board.style.width = `${this.width * 25}px`;
                this.board.style.height = `${this.height * 25}px`;
@@ -28,6 +32,12 @@ window.addEventListener("DOMContentLoaded", function () {
                        self.addFlag(e);
                        return false;
                    }, false);
+                   element.addEventListener('mousedown',(e) => {
+                       self.emoticonFace.setAttribute("src","img/icons8-surprised-emoticon-50.png");
+                   });
+                   element.addEventListener('mouseup',(e) => {
+                       self.emoticonFace.setAttribute("src","img/icons8-happy-50.png");
+                   });
                });
            };
            this.index = (x, y) => {
@@ -265,19 +275,28 @@ window.addEventListener("DOMContentLoaded", function () {
                     if (element.children.length > 0) {
                         let child = element.querySelector("span");
                         child.remove();
+                        this.counterOfBombs.innerText++;
                     } else {
                         let flag = document.createElement("span");
                         flag.classList.add("flag");
                         element.appendChild(flag);
+                        this.counterOfBombs.innerText--;
                     }
                 }
+           };
+
+           this.setbombCounter = () => {
+               this.counterOfBombs.innerText = this.quantityOfMines;
            };
 
            this.gameOver = () => {
                for (let i = 0; i < this.numberOfElements; i++) {
                    this.cells[i].classList.remove("hide");
                }
+               self.emoticonFace.setAttribute("src","img/icons8-disappointed-emoticon-50.png")
            }
+
+
        }
    }
 
@@ -292,6 +311,7 @@ window.addEventListener("DOMContentLoaded", function () {
     playGame.createBoard();
     playGame.addBombs();
     playGame.showNumbers();
+    playGame.setbombCounter();
 
 
 
