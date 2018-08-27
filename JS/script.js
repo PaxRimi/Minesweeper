@@ -30,6 +30,7 @@ window.addEventListener("DOMContentLoaded", function () {
                    element.addEventListener('click', function (e) {
                        this.classList.remove('hide');
                        this.innerText = this.getAttribute("data-number");
+                       this.classList.add(`numb${this.getAttribute("data-number")}`);
                    });
                    element.addEventListener('click', (e) => self.checkNumber(e));
                    element.addEventListener('contextmenu', function(e) {
@@ -185,6 +186,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                            element.classList.remove("hide");
                            element.innerText = element.getAttribute("data-number");
+                           element.classList.add(`numb${element.getAttribute("data-number")}`);
                            if (element.innerText === "0") {
                                numA = x - 1;
                                numB = y - 1;
@@ -200,6 +202,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                        element.classList.remove("hide");
                        element.innerText = element.getAttribute("data-number");
+                       element.classList.add(`numb${element.getAttribute("data-number")}`);
                        if (element.innerText === "0") {
                            numA = x;
                            numB = y - 1;
@@ -215,6 +218,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                            element.classList.remove("hide");
                            element.innerText = element.getAttribute("data-number");
+                           element.classList.add(`numb${element.getAttribute("data-number")}`);
                            if (element.innerText === "0") {
                                numA = x + 1;
                                numB = y - 1;
@@ -230,6 +234,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                        element.classList.remove("hide");
                        element.innerText = element.getAttribute("data-number");
+                       element.classList.add(`numb${element.getAttribute("data-number")}`);
                        if (element.innerText === "0") {
                            numA = x - 1;
                            numB = y;
@@ -244,6 +249,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                        element.classList.remove("hide");
                        element.innerText = element.getAttribute("data-number");
+                       element.classList.add(`numb${element.getAttribute("data-number")}`);
                        if (element.innerText === "0") {
                            numA = x + 1;
                            numB = y;
@@ -259,6 +265,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                            element.classList.remove("hide");
                            element.innerText = element.getAttribute("data-number");
+                           element.classList.add(`numb${element.getAttribute("data-number")}`);
                            if (element.innerText === "0") {
                                numA = x - 1;
                                numB = y + 1;
@@ -274,6 +281,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                        element.classList.remove("hide");
                        element.innerText = element.getAttribute("data-number");
+                       element.classList.add(`numb${element.getAttribute("data-number")}`);
                        if (element.innerText === "0") {
                            numA = x;
                            numB = y + 1;
@@ -289,6 +297,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
                            element.classList.remove("hide");
                            element.innerText = element.getAttribute("data-number");
+                           element.classList.add(`numb${element.getAttribute("data-number")}`);
                            if (element.innerText === "0") {
                                numA = x + 1;
                                numB = y + 1;
@@ -323,6 +332,7 @@ window.addEventListener("DOMContentLoaded", function () {
                for (let i = 0; i < this.numberOfElements; i++) {
                    this.cells[i].classList.remove("hide");
                    this.cells[i].innerText = this.cells[i].getAttribute("data-number");
+                   this.cells[i].classList.add(`numb${this.cells[i].getAttribute("data-number")}`);
 
 
                    if(this.cells[i].classList.contains("bomb")){
