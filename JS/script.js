@@ -388,6 +388,7 @@ window.addEventListener("DOMContentLoaded", function () {
     playGame.startCountingTime();
 
     resetGame.addEventListener('click', () => {
+        playGame.stopCountingTime();
         delete window.playGame;
         clearBoard();
         playGame = new Minesweeper(10,10);
