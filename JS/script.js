@@ -313,6 +313,10 @@ window.addEventListener("DOMContentLoaded", function () {
            this.gameOver = () => {
                for (let i = 0; i < this.numberOfElements; i++) {
                    this.cells[i].classList.remove("hide");
+
+                   if(this.cells[i].classList.contains("bomb")){
+                       this.cells[i].classList.add("bombImg");
+                   }
                }
                self.emoticonFace.setAttribute("src","img/icons8-disappointed-emoticon-50.png")
                clearInterval(self.setinterval);
