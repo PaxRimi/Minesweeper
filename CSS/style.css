@@ -27,8 +27,8 @@ body {
     cursor: pointer;
     text-align: center;
     line-height: 25px;
-    color: grey;
     position: relative;
+    font-weight: bolder;
 }
 
 #board div.bomb {
@@ -88,4 +88,40 @@ body {
     height: 25px;
     border-radius: 50%;
     background-color: yellow;
+}
+
+.numb0{
+    color: black;
+}
+
+.numb1{
+    color: blue;
+}
+
+.numb2{
+    color: green;
+}
+
+.numb3{
+    color: red;
+}
+
+.numb4{
+    color: darkblue;
+}
+
+.numb5{
+    color: brown;
+}
+
+.numb6{
+    color: turquoise;
+}
+
+.numb7{
+    color: #bada55;
+}
+
+.numb8{
+    color: grey;
 }
