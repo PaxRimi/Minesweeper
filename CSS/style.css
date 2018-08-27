@@ -35,6 +35,13 @@ body {
     background-color: red;
 }
 
+#board div.bombImg {
+    background-image: url("../img/icons8-naval-mine-filled-50.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
 #board div.hide {
     background-color: grey;
 }
