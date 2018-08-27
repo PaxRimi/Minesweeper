@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
 
     const resetGame = document.getElementById('restartGame');
-    var boardParent = document.querySelector('.boardFlex');
+    const boardParent = document.querySelector('.boardFlex');
     console.log(resetGame);
 
    class Minesweeper {
@@ -29,6 +29,7 @@ window.addEventListener("DOMContentLoaded", function () {
                this.cells.forEach(function (element) {
                    element.addEventListener('click', function (e) {
                        this.classList.remove('hide');
+                       this.innerText = this.getAttribute("data-number");
                    });
                    element.addEventListener('click', (e) => self.checkNumber(e));
                    element.addEventListener('contextmenu', function(e) {
@@ -59,7 +60,7 @@ window.addEventListener("DOMContentLoaded", function () {
                    this.placeOfMines.push(number);
                }
            };
-           this.showNumbers = () => {
+           this.addNumbers = () => {
                for (let i = 0; i < this.height; i++) {
                    for (let j = 0; j < this.width; j++) {
                        const cell = this.cells[this.index(j, i)];
@@ -123,7 +124,7 @@ window.addEventListener("DOMContentLoaded", function () {
                                }
                            }
 
-                           cell.innerText = bombNeighbor;
+                           cell.setAttribute('data-number' , bombNeighbor);
                        }
                    }
                }
@@ -183,6 +184,7 @@ window.addEventListener("DOMContentLoaded", function () {
                            element = this.cells[this.index(x - 1, y - 1)];
 
                            element.classList.remove("hide");
+                           element.innerText = element.getAttribute("data-number");
                            if (element.innerText === "0") {
                                numA = x - 1;
                                numB = y - 1;
@@ -197,6 +199,7 @@ window.addEventListener("DOMContentLoaded", function () {
                        element = this.cells[this.index(x, y - 1)];
 
                        element.classList.remove("hide");
+                       element.innerText = element.getAttribute("data-number");
                        if (element.innerText === "0") {
                            numA = x;
                            numB = y - 1;
@@ -211,6 +214,7 @@ window.addEventListener("DOMContentLoaded", function () {
                            element = this.cells[this.index(x + 1, y - 1)];
 
                            element.classList.remove("hide");
+                           element.innerText = element.getAttribute("data-number");
                            if (element.innerText === "0") {
                                numA = x + 1;
                                numB = y - 1;
@@ -225,6 +229,7 @@ window.addEventListener("DOMContentLoaded", function () {
                        element = this.cells[this.index(x - 1, y)];
 
                        element.classList.remove("hide");
+                       element.innerText = element.getAttribute("data-number");
                        if (element.innerText === "0") {
                            numA = x - 1;
                            numB = y;
@@ -238,6 +243,7 @@ window.addEventListener("DOMContentLoaded", function () {
                        element = this.cells[this.index(x + 1, y)];
 
                        element.classList.remove("hide");
+                       element.innerText = element.getAttribute("data-number");
                        if (element.innerText === "0") {
                            numA = x + 1;
                            numB = y;
@@ -252,6 +258,7 @@ window.addEventListener("DOMContentLoaded", function () {
                            element = this.cells[this.index(x - 1, y + 1)];
 
                            element.classList.remove("hide");
+                           element.innerText = element.getAttribute("data-number");
                            if (element.innerText === "0") {
                                numA = x - 1;
                                numB = y + 1;
@@ -266,6 +273,7 @@ window.addEventListener("DOMContentLoaded", function () {
                        element = this.cells[this.index(x, y + 1)];
 
                        element.classList.remove("hide");
+                       element.innerText = element.getAttribute("data-number");
                        if (element.innerText === "0") {
                            numA = x;
                            numB = y + 1;
@@ -280,6 +288,7 @@ window.addEventListener("DOMContentLoaded", function () {
                            element = this.cells[this.index(x + 1, y + 1)];
 
                            element.classList.remove("hide");
+                           element.innerText = element.getAttribute("data-number");
                            if (element.innerText === "0") {
                                numA = x + 1;
                                numB = y + 1;
@@ -313,6 +322,8 @@ window.addEventListener("DOMContentLoaded", function () {
            this.gameOver = () => {
                for (let i = 0; i < this.numberOfElements; i++) {
                    this.cells[i].classList.remove("hide");
+                   this.cells[i].innerText = this.cells[i].getAttribute("data-number");
+
 
                    if(this.cells[i].classList.contains("bomb")){
                        this.cells[i].classList.add("bombImg");
@@ -362,7 +373,7 @@ window.addEventListener("DOMContentLoaded", function () {
     playGame = new Minesweeper(10,10);
     playGame.createBoard();
     playGame.addBombs();
-    playGame.showNumbers();
+    playGame.addNumbers();
     playGame.setbombCounter();
     playGame.startCountingTime();
 
@@ -372,7 +383,7 @@ window.addEventListener("DOMContentLoaded", function () {
         playGame = new Minesweeper(10,10);
         playGame.createBoard();
         playGame.addBombs();
-        playGame.showNumbers();
+        playGame.addNumbers();
         playGame.setbombCounter();
         playGame.gameTimer.innerText = "70";
         playGame.startCountingTime();
