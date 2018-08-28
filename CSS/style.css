@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Digital7';
+    src: url('../Fonts/digital-7-webfont.woff') format('woff'), url('../fonts/digital-7-webfont.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -69,12 +76,13 @@ body {
 .info .screen {
     width: 80px;
     height: 30px;
-    font-size: 18px;
+    font-size: 22px;
     color: red;
     background-color: black;
     text-align: right;
     line-height: 30px;
     padding-right: 3px;
+    font-family: Digital7, sans-serif;
 }
 
 .restart {
