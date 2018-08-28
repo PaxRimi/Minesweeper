@@ -396,7 +396,7 @@ window.addEventListener("DOMContentLoaded", function () {
         playGame.addBombs();
         playGame.addNumbers();
         playGame.setbombCounter();
-        playGame.gameTimer.innerText = "70";
+        playGame.gameTimer.innerText = "75";
         playGame.startCountingTime();
         playGame.emoticonFace.setAttribute("src","img/icons8-happy-50.png");
     })
